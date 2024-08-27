@@ -6,7 +6,6 @@ class Solution(object):
             u, v, cost = edges[i][0], edges[i][1], succProb[i]
             adj[u].append((cost, v))
             adj[v].append((cost, u))
-
         maxHeap = [(-1.0, start)] # Using negative because heapq is a min-heap by default
         Prob = [0.0] * n
         Prob[start] = 1.0
