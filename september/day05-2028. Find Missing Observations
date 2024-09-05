@@ -1,0 +1,26 @@
+class Solution(object):
+    def missingRolls(self, rolls, mean, n):
+        m = len(rolls)
+        
+        # Calculate the total sum needed for (m + n) rolls to achieve the given mean
+        target_total = (m + n) * mean
+        remaining_total = target_total - sum(rolls)
+
+        # if remaining total is less than n it means that we need a value less than 1 which is not possible in Dice. hence, return empty list
+        if remaining_total < n: 
+            return []
+        # if remaining total is greater than 6 * n it means that we need a value greater than 6 which is not possible in Dice. hence, return empty list
+        if remaining_total > 6 * n:
+            return []
+        
+        # Distribute the remainder evenly across the 'n' rolls
+        base = remaining_total // n
+        extra = remaining_total % n  # Extra value to distribute among some other rolls
+        
+        ans = [base] * n
+        
+        # Distribute the extra ones to the first 'extra' rolls
+        for i in range(extra):
+            ans[i] += 1
+        
+        return ans
